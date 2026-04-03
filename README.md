@@ -29,35 +29,13 @@ Harness sets up a repository to support this loop from day one:
 - `harness init`: create the baseline scaffold in the current directory.
 - `harness configure`: launch an interactive Codex session that personalizes the scaffold for the real project.
 
-## Quickstart
+## Quick Installation
 
-Create or enter a project directory:
-
-```bash
-mkdir my-project
-cd my-project
-```
-
-Initialize the scaffold:
-
-```bash
-harness init --project-name "My Project"
-```
-
-Launch interactive project setup:
-
-```bash
-harness configure
-```
-
-Codex will interview you about the project direction, language, architecture, validation setup, observability, and local tooling, then update the repository so future agent work can happen inside a more complete, self-sufficient environment.
-
-## Prerequisites
+Prerequisites:
 
 - Node.js 20 or newer.
-- The local `codex` executable must be installed and available on `PATH` before you run `harness configure`.
-
-## Installation
+- `harness init` works without Codex.
+- `harness configure` currently supports only Codex, so the local `codex` executable must be installed and available on `PATH`.
 
 Global install:
 
@@ -70,6 +48,36 @@ One-off use with `npx`:
 ```bash
 npx harness-cli init --project-name "My Project"
 ```
+
+## Quick Usage
+
+Create or enter a project directory:
+
+```bash
+mkdir my-project
+cd my-project
+```
+
+Initialize the baseline Harness scaffold:
+
+```bash
+harness init --project-name "My Project"
+```
+
+This creates the generic repository structure for specs, design docs, ExecPlans, generated evidence, and agent workflow guidance.
+
+Personalize that scaffold for the actual project:
+
+```bash
+harness configure
+```
+
+`harness configure` defaults to Codex, and `--provider codex` is the only supported explicit provider value right now.
+
+Result:
+
+- After `init`, you have a deterministic, language-agnostic baseline scaffold.
+- After `configure`, Codex interviews you about the project direction, language, architecture, validation setup, observability, and tooling, then updates the repository into a more complete, self-sufficient workspace for future agent work.
 
 ## What Makes It Different
 
@@ -87,6 +95,7 @@ npx harness-cli init --project-name "My Project"
 
 ## Documentation
 
+- [Hosted Docs](https://antubattle.github.io/Harness/)
 - [Docs Home](docs/index.md)
 - [Installation Guide](docs/installation.md)
 - [Quickstart](docs/quickstart.md)
