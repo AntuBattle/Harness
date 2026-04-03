@@ -1,0 +1,24 @@
+{
+  "name": "harness-cli",
+  "version": "0.1.0",
+  "description": "CLI for scaffolding agent-ready repositories and launching interactive Codex-guided personalization.",
+  "type": "module",
+  "bin": {
+    "harness": "./bin/harness.js"
+  },
+  "scripts": {
+    "prebuild": "node --input-type=module -e \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true });\"",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "pretest": "npm run build",
+    "test": "node --test dist/tests/*.test.js",
+    "prepare": "npm run build"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.0",
+    "typescript": "^5.8.3"
+  }
+}
