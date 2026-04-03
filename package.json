@@ -1,8 +1,8 @@
 {
   "name": "harness-cli",
   "version": "0.1.0",
-  "description": "CLI for scaffolding agent-ready repositories and launching interactive Codex-guided personalization.",
-  "license": "UNLICENSED",
+  "description": "Turn a blank repository into a self-reviewing workspace for coding agents.",
+  "license": "MIT",
   "type": "module",
   "bin": {
     "harness": "./bin/harness.js"
