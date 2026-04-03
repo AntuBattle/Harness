@@ -50,6 +50,12 @@ test("configure launches codex interactively with a seed prompt", async () => {
   assert.equal(calls[0]?.options.stdio, "inherit");
   assert.match(calls[0]?.args[0] ?? "", /current scaffold value is "Demo"/);
   assert.match(calls[0]?.args[0] ?? "", /Chrome DevTools/);
+  assert.match(calls[0]?.args[0] ?? "", /validation-subagent policy/i);
+  assert.match(calls[0]?.args[0] ?? "", /active ExecPlan/i);
+  assert.match(
+    calls[0]?.args[0] ?? "",
+    /review correctness, regressions, and repository-guideline compliance first/i,
+  );
   assert.match(
     stdout.toString(),
     /Launching interactive Codex configuration\.\.\./,

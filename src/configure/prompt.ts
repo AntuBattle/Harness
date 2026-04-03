@@ -1,3 +1,5 @@
+import { renderValidationSubagentPolicy } from "../workflow/validation-subagent.js";
+
 export interface CodexConfigurePromptInput {
   projectName: string;
 }
@@ -36,6 +38,10 @@ After that, gather the setup decisions needed for an autonomous local engineerin
 - logs, traces, diagnostics, and other runtime signals that future agents can inspect locally;
 - browser or framework dev tools such as Chrome DevTools when the project includes a frontend;
 - anything else required so an agent can implement and verify a feature inside this repository without hidden human intervention.
+
+The repository workflow you write must enforce this validation-subagent policy:
+
+${renderValidationSubagentPolicy()}
 
 Once you have enough context:
 - personalize the repository docs and metadata;

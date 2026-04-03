@@ -1,4 +1,5 @@
 import type { FileEntry } from "../types.js";
+import { renderValidationSubagentPolicy } from "../workflow/validation-subagent.js";
 
 const HARNESS_VERSION = "0.1.0";
 const SCAFFOLD_VERSION = "0.2";
@@ -22,7 +23,8 @@ This repository was scaffolded by Harness for agent-ready, closed-loop developme
 2. Capture architecture and tradeoffs in \`features/design-docs/\`.
 3. Use ExecPlans in \`features/exec-plans/\` for non-trivial work.
 4. Archive generated evidence in \`features/generated/\`.
-5. Track deliberate deferrals in \`features/tech-debt-tracker.md\`.
+5. Run a separate validation subagent review before considering non-trivial work complete.
+6. Track deliberate deferrals in \`features/tech-debt-tracker.md\`.
 
 ## Current State
 
@@ -52,8 +54,13 @@ For non-trivial work:
 2. Update \`features/design-docs/\` when architecture or tradeoffs change.
 3. Create or update an ExecPlan in \`features/exec-plans/active/\`.
 4. Implement incrementally and run validations.
-5. Archive meaningful outputs under \`features/generated/\`.
-6. Move accepted plans to \`features/exec-plans/completed/\`.
+5. Run the separate validation-subagent pass.
+6. Archive meaningful outputs under \`features/generated/\`.
+7. Move accepted plans to \`features/exec-plans/completed/\`.
+
+## Validation Subagent Requirement
+
+${renderValidationSubagentPolicy()}
 
 ## Repository Visibility Tools
 
@@ -122,14 +129,21 @@ Every active ExecPlan must include and keep updated:
 - design implications and constraints
 - ordered implementation steps
 - validation plan
+- validation-subagent prompt or prompt recipe that is distinct from the implementation prompt
+- how validation findings and artifacts will be recorded and resolved before acceptance
 - rollback or mitigation notes for risky changes
+
+## Validation Subagent Requirement
+
+${renderValidationSubagentPolicy()}
 
 ## Lifecycle
 
 1. Create the plan before implementation.
 2. Update the plan during execution.
-3. Complete the retrospective with actual outcomes.
-4. Move the plan to \`completed/\` after acceptance.
+3. Run the validation subagent and address findings before acceptance.
+4. Complete the retrospective with actual outcomes.
+5. Move the plan to \`completed/\` after acceptance.
 `;
 }
 
@@ -232,6 +246,7 @@ This directory stores generated outputs only.
 Examples:
 
 - validation reports
+- validation-subagent prompts and findings
 - screenshots or browser captures
 - runtime logs or traces saved for review
 - deterministic snapshots

@@ -22,6 +22,8 @@ test("init writes the scaffold in the current directory and infers the project n
   assert.equal(stderr.toString(), "");
 
   const readme = await readFile(join(tempDir, "README.md"), "utf8");
+  const agents = await readFile(join(tempDir, "AGENTS.md"), "utf8");
+  const plans = await readFile(join(tempDir, "PLANS.md"), "utf8");
   const config = JSON.parse(
     await readFile(join(tempDir, "harness.config.json"), "utf8"),
   ) as {
@@ -31,6 +33,9 @@ test("init writes the scaffold in the current directory and infers the project n
   };
 
   assert.match(readme, new RegExp(`# ${basename(tempDir)}`));
+  assert.match(agents, /validation subagent/i);
+  assert.match(agents, /active ExecPlan/i);
+  assert.match(plans, /validation-subagent prompt or prompt recipe/i);
   assert.equal(config.project.name, basename(tempDir));
   assert.match(stdout.toString(), /Harness init complete\./);
 });
