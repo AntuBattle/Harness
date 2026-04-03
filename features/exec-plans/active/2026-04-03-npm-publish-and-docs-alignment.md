@@ -72,6 +72,7 @@ Review the latest npm publishing and documentation update for Harness. Use `feat
 
 - `harness` and `harness-cli` are both already taken on npm, so a scoped package name is required for a clean publish path.
 - `npm install --package-lock-only` still triggered the package `prepare` script, so refreshing the lockfile also rebuilt `dist/`.
+- npm rejected the first publish attempt because the account requires publish-time 2FA, and npm also normalized the `bin` path to `bin/harness.js` during publish.
 
 ## Decision Log
 
@@ -80,4 +81,4 @@ Review the latest npm publishing and documentation update for Harness. Use `feat
 
 ## Outcomes & Retrospective
 
-- In progress. The repository is now publish-ready for `@antubattle/harness`, the docs reference the scoped install path, and local build, test, smoke-pack, and dry-run packaging checks have passed.
+- In progress. The repository is now publish-ready for `@antubattle/harness`, the docs reference the scoped install path, local build, test, smoke-pack, and dry-run packaging checks have passed, and the manifest now matches npm's current `bin` normalization.

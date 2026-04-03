@@ -16,7 +16,7 @@
   },
   "type": "module",
   "bin": {
-    "harness": "./bin/harness.js"
+    "harness": "bin/harness.js"
   },
   "files": [
     "bin/",

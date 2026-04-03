@@ -21,6 +21,8 @@ npm whoami
 
 `npm whoami` should print `antubattle` before you publish.
 
+If the npm account enforces publish-time 2FA, `npm publish` will require a current OTP or a granular access token that is allowed to bypass 2FA for publishing.
+
 ## Build
 
 ```bash
@@ -49,6 +51,12 @@ npm publish
 ```
 
 `package.json` sets `publishConfig.access` to `public`, so the scoped package is published publicly.
+
+If npm prompts for a one-time password, rerun the publish with:
+
+```bash
+npm publish --otp <code>
+```
 
 ## Verify The Published Package
 
