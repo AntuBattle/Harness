@@ -31,6 +31,10 @@ Harness does not only create folders. It establishes an operating model for repo
    - update design docs when architecture or tradeoffs change;
    - create or update an ExecPlan before non-trivial implementation;
    - implement incrementally and run validations;
+   - launch a separate validation subagent with a prompt that is explicitly different from the implementation prompt;
+   - direct that validation subagent to use the active ExecPlan when present or a contextual summary otherwise;
+   - require that validation subagent to review correctness and regressions first, run tests second, and identify repetition or style and organization improvements third;
+   - iterate on findings until the validation subagent no longer reports material issues;
    - archive meaningful generated evidence;
    - review against specs, plans, and artifacts.
 2. Generated agent guidance must encourage agents to use repository visibility tools when applicable, including:
@@ -48,6 +52,7 @@ Harness does not only create folders. It establishes an operating model for repo
 - Closed-loop guidance must be tool-aware and, after configuration, concrete enough for the chosen stack.
 - The workflow must be usable by a new contributor without hidden assumptions.
 - Generated docs must distinguish between required process structure and project-specific tooling recommendations.
+- The validation-subagent prompt must be explicit and distinct from the implementation prompt so review independence is preserved.
 
 ## Non-Functional Requirements
 
@@ -56,7 +61,7 @@ Harness does not only create folders. It establishes an operating model for repo
 
 ## Cross-Cutting Concerns
 
-- Validation: generated docs must explain where validation evidence belongs and how the configured project should be exercised locally.
+- Validation: generated docs must explain where validation evidence belongs, how the configured project should be exercised locally, and how the validation-subagent prompt and findings should be captured.
 - Logging: generated guidance must remind contributors to inspect logs and operational signals when troubleshooting.
 - Security: generated workflow guidance must not encourage unsafe repository mutation or blind command execution.
 - Traceability: decisions, plans, and evidence must remain archived in predictable locations.
@@ -66,6 +71,7 @@ Harness does not only create folders. It establishes an operating model for repo
 - A new contributor can read the generated docs and understand how to run a non-trivial change through planning, implementation, validation, observation, and review.
 - The guidance remains useful for a Python, Node, frontend, or mixed-stack repository.
 - The generated docs explicitly mention worktrees, repository-hosting context, and runtime or browser visibility where relevant.
+- The generated docs explicitly require a distinct validation-subagent prompt and describe the review order that subagent must follow.
 
 ## References
 

@@ -49,7 +49,7 @@ Harness is a local CLI for bootstrapping repositories that support closed-loop w
    - `features/exec-plans/completed/README.md`
    - `features/generated/README.md`
    - `features/tech-debt-tracker.md`
-6. The generated documents must remain language agnostic and must explain that `harness configure` is the interactive step that tailors the repository for a real project.
+6. The generated documents must remain language agnostic, must explain that `harness configure` is the interactive step that tailors the repository for a real project, and must already establish the baseline expectation that non-trivial implementation ends with a separate validation-subagent review pass.
 7. The generated `harness.config.json` must record:
    - Harness version
    - scaffold version

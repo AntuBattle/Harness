@@ -42,6 +42,12 @@ These principles define the default engineering standard for Harness.
 - Test both success paths and failure modes, including collision handling and invalid CLI usage.
 - Ensure generated prompts and summaries are deterministic and easy to inspect in tests.
 
+## Independent validation
+
+- Non-trivial implementation is not complete until a separate validation subagent has reviewed it.
+- The validation-subagent prompt must be distinct from the implementation prompt.
+- The validation pass prioritizes correctness and regressions first, test execution second, and style or organization improvements third.
+
 ## Review bar
 
 Changes are acceptable only when they are:

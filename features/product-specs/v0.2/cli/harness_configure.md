@@ -44,6 +44,9 @@ The output of `harness init` is intentionally generic. A real repository still n
    - ask about the core architectural and workflow choices that matter for autonomous implementation, including framework choice, package manager or environment tooling, testing strategy, typing and linting, mocking and integration-test setup, external-service emulation, logging visibility, and validation commands;
    - suggest browser or framework dev tools such as Chrome DevTools when the project includes a frontend;
    - ensure the repository gives future agents a way to inspect logs and other runtime signals locally;
+   - update the repository workflow so every implemented change requires a separate validation subagent with an explicit prompt that is different from the implementation prompt;
+   - require that validation prompt to direct the validation subagent to review the latest feature using the active ExecPlan when present or a contextual summary otherwise, then run tests, then identify repetition or style and organization improvements in that priority order;
+   - require contributors to iterate on findings until the validation subagent is satisfied;
    - stay helpful, kind, and professionally opinionated when the user has not made a choice;
    - leave the repository in a state where a future agent can implement and test features autonomously inside the repository without relying on hidden human context.
 8. Harness must launch Codex interactively from the repository root with terminal I/O attached to the user session so Codex can ask follow-up questions directly in the CLI.
@@ -67,7 +70,7 @@ The output of `harness init` is intentionally generic. A real repository still n
 - Validation: reject unknown flags, reject positionals, enforce `codex` as the only provider, and validate scaffold completeness before launch.
 - Logging: terminal output should be minimal and should not compete with the interactive Codex session.
 - Security: Harness must launch only the trusted `codex` executable and must not accept arbitrary command overrides.
-- Traceability: Codex must be prompted to update the repository docs and workflow guidance so the resulting setup is self-describing.
+- Traceability: Codex must be prompted to update the repository docs and workflow guidance so the resulting setup is self-describing, including the validation-subagent review loop and its evidence expectations.
 
 ## Acceptance Criteria
 
@@ -75,6 +78,7 @@ The output of `harness init` is intentionally generic. A real repository still n
 - Running `harness configure --provider codex` behaves the same as the default path.
 - Running `harness configure --provider claude` fails with an actionable unsupported-provider message.
 - The seed prompt is explicit enough that Codex starts by interviewing the user about project direction instead of making blind assumptions.
+- The seed prompt is explicit enough that Codex updates the configured repository to require a separate validation-subagent review pass after implementation.
 - Running `harness configure` outside a valid Harness scaffold fails before Codex is started.
 
 ## References

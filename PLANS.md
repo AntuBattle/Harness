@@ -24,11 +24,14 @@ Every active ExecPlan must include and keep updated:
 - Design implications and constraints.
 - Ordered implementation steps.
 - Validation plan (unit/integration/validators).
+- Validation-subagent prompt or prompt recipe that is distinct from the implementation prompt.
+- How validation findings and artifacts will be recorded and resolved before acceptance.
 - Rollback or mitigation notes for risky changes.
 
 ## Lifecycle
 
 1. Create plan before implementation.
 2. Update plan during execution.
-3. Complete retrospective with actual outcomes.
-4. Move to `completed/` after acceptance.
+3. Run the validation subagent and address findings before acceptance.
+4. Complete retrospective with actual outcomes.
+5. Move to `completed/` after acceptance.

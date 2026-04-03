@@ -26,7 +26,14 @@ For non-trivial work:
 2. Update `features/design-docs/` for architecture/tradeoff changes.
 3. Create an ExecPlan in `features/exec-plans/active/` before coding.
 4. Implement incrementally.
-5. Record outcomes and move completed plans to `features/exec-plans/completed/`.
+5. Launch a separate validation subagent with an explicit prompt that is different from the implementation prompt.
+6. Make that validation prompt point the subagent to the active ExecPlan when available, or provide a contextual summary when it is not.
+7. Require the validation subagent to review the latest feature in this order:
+   - correctness, regressions, and repository-guideline compliance;
+   - test execution and validation results;
+   - code repetition plus potential improvements in style or code organization.
+8. Iterate on findings until the validation subagent no longer reports material issues.
+9. Record outcomes and move completed plans to `features/exec-plans/completed/`.
 
 ## ExecPlans
 
@@ -39,8 +46,9 @@ For non-trivial work:
 Harness is expected to support a local closed-loop flow where:
 
 1. Implementer executes a plan and tests.
-2. Reviewer validates repository consistency and generated evidence.
-3. Validation artifacts are archived for traceability.
+2. A separate validation subagent reviews the implementation with a distinct prompt and runs the relevant tests.
+3. Reviewer validates repository consistency and generated evidence.
+4. Validation artifacts are archived for traceability.
 
 ## Current scaffold limitations
 

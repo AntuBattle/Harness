@@ -47,6 +47,7 @@ Invariant: template definitions are declarative and deterministic for the same i
 - Launch Codex with inherited terminal I/O.
 
 Invariant: configure always validates the scaffold before Codex is launched.
+Invariant: the configure seed prompt must require the configured repository to adopt a separate validation-subagent pass after implementation.
 
 ### Filesystem Support (`src/lib/fs.ts`)
 

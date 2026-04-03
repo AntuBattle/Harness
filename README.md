@@ -17,7 +17,8 @@ The generated repository is meant to support this loop from day one:
 2. Record architecture and tradeoffs in design docs.
 3. Execute non-trivial work through ExecPlans.
 4. Run validations and archive evidence.
-5. Review changes against explicit expectations.
+5. Run a separate validation subagent with an explicit review prompt before considering the task complete.
+6. Review changes against explicit expectations.
 
 ## Current direction
 

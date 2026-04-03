@@ -57,6 +57,7 @@ Every product spec must:
 - define business rules, invariants, and constraints that shape the behavior;
 - define non-functional expectations when they matter, such as latency, determinism, memory, or operability;
 - briefly restate relevant cross-cutting concerns such as logging, security, and validation according to project-wide guidelines so the feature document remains self-sufficient;
+- restate the mandatory validation-subagent workflow when the feature affects implementation or review behavior;
 - define acceptance in terms of observable results;
 - add any extra sections needed to make the feature understandable or implementable in context;
 - resolve all open questions and unresolved assumptions before the spec is considered final;
