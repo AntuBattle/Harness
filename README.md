@@ -28,6 +28,48 @@ The generated repository is meant to support this loop from day one:
 - Codex is the only supported agent runtime for interactive configuration right now.
 - `configure` no longer writes prompt-bundle artifacts; it validates the scaffold, builds a seed prompt, and hands control to Codex.
 
+## Prerequisites
+
+- Node.js 20 or newer.
+- The local `codex` executable must be installed and available on `PATH` before you run `harness configure`.
+
+## Installation
+
+Global install:
+
+```bash
+npm install -g harness-cli
+```
+
+One-off use with `npx`:
+
+```bash
+npx harness-cli init --project-name "My Project"
+```
+
+## Quickstart
+
+Initialize a repository in the current directory:
+
+```bash
+harness init --project-name "My Project"
+```
+
+Then launch the interactive Codex setup:
+
+```bash
+harness configure
+```
+
+Codex will ask follow-up questions about the project and should leave the repository with a concrete workflow, validation strategy, observability setup, and the mandatory validation-subagent loop.
+
+## Documentation
+
+- [Docs Home](docs/index.md)
+- [Installation Guide](docs/installation.md)
+- [Quickstart](docs/quickstart.md)
+- [Publishing Guide](docs/publishing.md)
+
 ## Repository map
 
 - `AGENTS.md`: agent workflow and execution policy for this repository.
