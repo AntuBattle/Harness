@@ -1,8 +1,19 @@
 {
-  "name": "harness-cli",
+  "name": "@antubattle/harness",
   "version": "0.1.0",
   "description": "Turn a blank repository into a self-reviewing workspace for coding agents.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AntuBattle/Harness.git"
+  },
+  "homepage": "https://antubattle.github.io/Harness/",
+  "bugs": {
+    "url": "https://github.com/AntuBattle/Harness/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "bin": {
     "harness": "./bin/harness.js"

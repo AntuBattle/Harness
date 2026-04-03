@@ -6,6 +6,8 @@ title: Harness Docs
 
 Harness is a TypeScript CLI for creating agent-ready repositories and then personalizing them through an interactive Codex-guided setup flow.
 
+Install the published package with `npm install -g @antubattle/harness`, then run the CLI as `harness`.
+
 ## Documentation Map
 
 - [Installation](installation.md)

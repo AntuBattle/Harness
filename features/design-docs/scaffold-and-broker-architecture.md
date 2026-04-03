@@ -37,6 +37,12 @@ Harness will keep the split between deterministic scaffolding and agent-driven p
 - Harness does not accept arbitrary command overrides.
 - Any future provider expansion must justify its complexity against this simpler baseline.
 
+### Distribution model
+
+- Harness is distributed on npm as the public scoped package `@antubattle/harness`.
+- The installed executable remains `harness` so the user-facing CLI stays short and stable.
+- Documentation and publishing guidance must prefer the scoped package name to avoid collisions with already-taken unscoped names.
+
 ## Consequences
 
 ### Positive

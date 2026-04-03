@@ -40,13 +40,13 @@ Prerequisites:
 Global install:
 
 ```bash
-npm install -g harness-cli
+npm install -g @antubattle/harness
 ```
 
 One-off use with `npx`:
 
 ```bash
-npx harness-cli init --project-name "My Project"
+npx @antubattle/harness init --project-name "My Project"
 ```
 
 ## Quick Usage
@@ -78,6 +78,8 @@ Result:
 
 - After `init`, you have a deterministic, language-agnostic baseline scaffold.
 - After `configure`, Codex interviews you about the project direction, language, architecture, validation setup, observability, and tooling, then updates the repository into a more complete, self-sufficient workspace for future agent work.
+
+The npm package name is `@antubattle/harness`, and the installed executable is `harness`.
 
 ## What Makes It Different
 
