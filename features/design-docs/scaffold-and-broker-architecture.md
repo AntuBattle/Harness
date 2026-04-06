@@ -19,16 +19,18 @@ Harness will keep the split between deterministic scaffolding and agent-driven p
 ### `init` responsibilities
 
 - Create the baseline repository structure in the current working directory.
-- Render generic process documentation.
+- Render generic process documentation, including dedicated standards for product specs and review.
 - Write only minimal scaffold metadata.
 - Accept only a project name override.
+- Encode the baseline workflow for validation-at-the-edge, daily generated-artifact folders, and mandatory validation closure.
 
 ### `configure` responsibilities
 
 - Validate that the repository is a complete Harness scaffold.
 - Build a deterministic seed prompt for Codex.
-- Launch Codex interactively in the repository so it can interview the user and personalize the setup.
+- Launch Codex interactively in the repository so it can interview the user and personalize the existing markdown guidance and metadata.
 - Require Codex to encode the independent validation-subagent loop into the configured repository workflow.
+- Keep Codex out of implementation mode during configure: no source-code creation, no ExecPlans, and no feature product-spec authoring.
 
 ### Provider model
 
@@ -63,6 +65,8 @@ Harness will keep the split between deterministic scaffolding and agent-driven p
 - Keep `init` and `configure` option parsing explicit and small.
 - Validate the scaffold before launching Codex.
 - Launch Codex with inherited terminal I/O so it can ask the user follow-up questions directly.
-- Keep the seed prompt specific about autonomous local development expectations, including logs, browser tooling for frontend work, validation strategy, and repository self-sufficiency.
-- Keep the seed prompt explicit about the mandatory validation-subagent rule, the need for a distinct prompt, and the order of review responsibilities in that validation pass.
+- Keep the seed prompt specific about autonomous local development expectations, including logs, browser tooling for frontend work, validation strategy, validation at the application edge, and repository self-sufficiency.
+- Keep the seed prompt explicit about the mandatory validation-subagent rule, the need for a distinct prompt, the order of review responsibilities in that validation pass, and the rule that implementation is not complete until the validation agent is satisfied.
+- Keep generated reviewer guidance separate from implementation guidance so reviewer agents have an obvious single file to follow.
+- Keep generated artifact guidance explicit that persisted logs, traces, screenshots, and similar evidence belong in day-based folders under `features/generated/`.
 - Use strongly typed command-context objects and parsed option objects across the implementation.
