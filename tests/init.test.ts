@@ -23,7 +23,13 @@ test("init writes the scaffold in the current directory and infers the project n
 
   const readme = await readFile(join(tempDir, "README.md"), "utf8");
   const agents = await readFile(join(tempDir, "AGENTS.md"), "utf8");
+  const review = await readFile(join(tempDir, "REVIEW.md"), "utf8");
   const plans = await readFile(join(tempDir, "PLANS.md"), "utf8");
+  const productSpecs = await readFile(join(tempDir, "PRODUCT_SPECS.md"), "utf8");
+  const generatedReadme = await readFile(
+    join(tempDir, "features/generated/README.md"),
+    "utf8",
+  );
   const config = JSON.parse(
     await readFile(join(tempDir, "harness.config.json"), "utf8"),
   ) as {
@@ -33,9 +39,21 @@ test("init writes the scaffold in the current directory and infers the project n
   };
 
   assert.match(readme, new RegExp(`# ${basename(tempDir)}`));
+  assert.match(readme, /REVIEW\.md/);
+  assert.match(readme, /PRODUCT_SPECS\.md/);
   assert.match(agents, /validation subagent/i);
-  assert.match(agents, /active ExecPlan/i);
+  assert.match(agents, /REVIEW\.md/);
+  assert.match(agents, /Conventional Commits/);
+  assert.match(review, /database or persistence interaction/i);
+  assert.match(review, /logger instances are not passed around/i);
+  assert.match(review, /SOLID, DRY, and ETC/i);
+  assert.match(review, /validation happens at the edge/i);
+  assert.match(review, /features\/generated\/YYYY-MM-DD\//i);
+  assert.match(plans, /PRODUCT_SPECS\.md/);
   assert.match(plans, /validation-subagent prompt or prompt recipe/i);
+  assert.match(productSpecs, /canonical standard for writing and maintaining product specs/i);
+  assert.match(productSpecs, /Use `REVIEW\.md` and the validation subagent/i);
+  assert.match(generatedReadme, /day-based subdirectory/i);
   assert.equal(config.project.name, basename(tempDir));
   assert.match(stdout.toString(), /Harness init complete\./);
 });

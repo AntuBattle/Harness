@@ -39,3 +39,5 @@ harness init --project-name "Billing Service"
 - Fails if generated files already exist.
 - Does not invoke external tools.
 - Produces a language-agnostic baseline ready for `harness configure`.
+- Generates dedicated `REVIEW.md` and `PRODUCT_SPECS.md` standards alongside the other root guidance files.
+- Teaches generated repositories to store artifacts in day-based folders under `features/generated/`.
