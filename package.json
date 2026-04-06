@@ -1,6 +1,6 @@
 {
   "name": "@antubattle/harness",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Turn a blank repository into a self-reviewing workspace for coding agents.",
   "license": "MIT",
   "repository": {
