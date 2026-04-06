@@ -21,6 +21,8 @@ const REQUIRED_CONFIGURE_FILES = [
   "AGENTS.md",
   "ARCHITECTURE.md",
   "PLANS.md",
+  "PRODUCT_SPECS.md",
+  "REVIEW.md",
   "features/design-docs/index.md",
   "features/generated/README.md",
   "features/product-specs/index.md",

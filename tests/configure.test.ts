@@ -1,4 +1,4 @@
-import { mkdtemp } from "node:fs/promises";
+import { mkdtemp, rm } from "node:fs/promises";
 import os from "node:os";
 import { join } from "node:path";
 import test from "node:test";
@@ -49,9 +49,17 @@ test("configure launches codex interactively with a seed prompt", async () => {
   assert.equal(calls[0]?.options.cwd, repoDir);
   assert.equal(calls[0]?.options.stdio, "inherit");
   assert.match(calls[0]?.args[0] ?? "", /current scaffold value is "Demo"/);
+  assert.match(calls[0]?.args[0] ?? "", /REVIEW\.md/);
+  assert.match(calls[0]?.args[0] ?? "", /PRODUCT_SPECS\.md/);
   assert.match(calls[0]?.args[0] ?? "", /Chrome DevTools/);
   assert.match(calls[0]?.args[0] ?? "", /validation-subagent policy/i);
   assert.match(calls[0]?.args[0] ?? "", /active ExecPlan/i);
+  assert.match(
+    calls[0]?.args[0] ?? "",
+    /Do not create ExecPlans, feature product specs, or source files where code lives during configure\./i,
+  );
+  assert.match(calls[0]?.args[0] ?? "", /application edge/i);
+  assert.match(calls[0]?.args[0] ?? "", /day-based folders under `features\/generated\/`/i);
   assert.match(
     calls[0]?.args[0] ?? "",
     /review correctness, regressions, and repository-guideline compliance first/i,
@@ -80,6 +88,27 @@ test("configure accepts --provider codex explicitly", async () => {
   assert.equal(stderr.toString(), "");
   assert.equal(calls.length, 1);
   assert.equal(calls[0]?.command, "codex");
+});
+
+test("configure requires REVIEW.md and PRODUCT_SPECS.md in the scaffold", async () => {
+  const tempDir = await mkdtemp(join(os.tmpdir(), "harness-configure-required-"));
+  const repoDir = await scaffoldRepo(tempDir);
+  await rm(join(repoDir, "REVIEW.md"));
+  await rm(join(repoDir, "PRODUCT_SPECS.md"));
+
+  const stdout = createCaptureStream();
+  const stderr = createCaptureStream();
+  const exitCode = await main({
+    argv: ["configure"],
+    cwd: repoDir,
+    stdout,
+    stderr,
+  });
+
+  assert.equal(exitCode, 1);
+  assert.equal(stdout.toString(), "");
+  assert.match(stderr.toString(), /REVIEW\.md/);
+  assert.match(stderr.toString(), /PRODUCT_SPECS\.md/);
 });
 
 test("configure rejects unsupported providers", async () => {

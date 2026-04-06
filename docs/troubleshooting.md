@@ -6,7 +6,7 @@ title: Troubleshooting
 
 ## `harness configure` says the repository is incomplete
 
-Run `harness init` first, or confirm that the expected scaffold files still exist.
+Run `harness init` first, or confirm that the expected scaffold files still exist, including `REVIEW.md` and `PRODUCT_SPECS.md`.
 
 ## `harness configure` cannot start Codex
 
