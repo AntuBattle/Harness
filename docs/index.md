@@ -27,4 +27,4 @@ Install the published package with `npm install -g @antubattle/harness`, then ru
 
 ## Core Workflow Expectation
 
-Every non-trivial implementation is expected to end with an independent validation-subagent pass. That subagent must receive an explicit prompt that is different from the implementation prompt, must review correctness first, run tests second, and suggest repetition or style and organization improvements third.
+Every non-trivial implementation is expected to end with an independent validation-subagent pass. That subagent must receive an explicit prompt that is different from the implementation prompt, must follow `REVIEW.md`, must review correctness first, run tests second, and suggest repetition or style and organization improvements third. The work is not complete until that validation pass reports no material issues.

@@ -9,8 +9,10 @@ Build a reliable CLI that can initialize repositories with planning, validation,
 ## Repository map
 
 - `README.md`: project purpose and scope.
+- `REVIEW.md`: validation and reviewer guide.
 - `ARCHITECTURE.md`: planned component boundaries and invariants.
 - `PLANS.md`: ExecPlan requirements.
+- `PRODUCT_SPECS.md`: product-spec authoring standard.
 - `features/product-specs/`: expected CLI behavior and acceptance criteria.
 - `features/design-docs/`: design rationale and core beliefs.
 - `features/exec-plans/active/`: active implementation plans.
@@ -22,18 +24,19 @@ Build a reliable CLI that can initialize repositories with planning, validation,
 
 For non-trivial work:
 
-1. Start from `features/product-specs/`.
+1. Start from `PRODUCT_SPECS.md` and `features/product-specs/`.
 2. Update `features/design-docs/` for architecture/tradeoff changes.
 3. Create an ExecPlan in `features/exec-plans/active/` before coding.
-4. Implement incrementally.
-5. Launch a separate validation subagent with an explicit prompt that is different from the implementation prompt.
+4. Implement incrementally and validate external inputs at the edge when applicable.
+5. Launch a separate validation subagent with an explicit prompt that is different from the implementation prompt and directs the reviewer to `REVIEW.md`.
 6. Make that validation prompt point the subagent to the active ExecPlan when available, or provide a contextual summary when it is not.
 7. Require the validation subagent to review the latest feature in this order:
    - correctness, regressions, and repository-guideline compliance;
    - test execution and validation results;
    - code repetition plus potential improvements in style or code organization.
 8. Iterate on findings until the validation subagent no longer reports material issues.
-9. Record outcomes and move completed plans to `features/exec-plans/completed/`.
+9. Archive meaningful generated evidence under a day-based folder inside `features/generated/`.
+10. Record outcomes and move completed plans to `features/exec-plans/completed/` only after the validation loop is closed.
 
 ## ExecPlans
 
@@ -46,9 +49,15 @@ For non-trivial work:
 Harness is expected to support a local closed-loop flow where:
 
 1. Implementer executes a plan and tests.
-2. A separate validation subagent reviews the implementation with a distinct prompt and runs the relevant tests.
+2. A separate validation subagent reviews the implementation with a distinct prompt, follows `REVIEW.md`, and runs the relevant tests.
 3. Reviewer validates repository consistency and generated evidence.
 4. Validation artifacts are archived for traceability.
+
+## Commit discipline
+
+- Use Conventional Commits.
+- Each commit should do one clearly scoped thing.
+- The commit message should describe that single purpose plainly.
 
 ## Current scaffold limitations
 

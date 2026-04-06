@@ -29,16 +29,16 @@ Codex should:
 
 - confirm the project name and gather a description;
 - ask about language, framework, validation, and observability choices;
-- help shape the repository into a self-sufficient local development and testbed environment;
+- personalize the existing markdown guidance into a self-sufficient local development and testbed environment;
 - preserve the Harness workflow of specs, design docs, ExecPlans, generated evidence, and tech debt tracking.
 
 ## 4. Follow The Closed Loop
 
 For non-trivial work:
 
-1. Start from the relevant product spec.
+1. Start from `PRODUCT_SPECS.md` and the relevant product spec.
 2. Update design docs when architecture changes.
 3. Create or update an ExecPlan.
 4. Implement incrementally.
-5. Run a separate validation subagent with a distinct prompt.
-6. Resolve findings before considering the task complete.
+5. Run a separate validation subagent with a distinct prompt that points to `REVIEW.md`.
+6. Resolve findings and rerun validation until no material issues remain.

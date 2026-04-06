@@ -17,11 +17,11 @@ The result is a repository where agents can plan, implement, validate, and revie
 
 Harness sets up a repository to support this loop from day one:
 
-1. Define intent in product specs.
+1. Define intent through `PRODUCT_SPECS.md` and repository product specs.
 2. Record architecture and tradeoffs in design docs.
 3. Execute non-trivial work through ExecPlans.
 4. Run validations and archive evidence.
-5. Run a separate validation subagent with an explicit review prompt before considering the task complete.
+5. Run a separate validation subagent with an explicit review prompt that follows `REVIEW.md` before considering the task complete.
 6. Review changes against explicit expectations.
 
 ## Commands
@@ -64,7 +64,7 @@ Initialize the baseline Harness scaffold:
 harness init --project-name "My Project"
 ```
 
-This creates the generic repository structure for specs, design docs, ExecPlans, generated evidence, and agent workflow guidance.
+This creates the generic repository structure for product-spec standards, review guidance, design docs, ExecPlans, generated evidence, and agent workflow guidance.
 
 Personalize that scaffold for the actual project:
 
@@ -77,7 +77,7 @@ harness configure
 Result:
 
 - After `init`, you have a deterministic, language-agnostic baseline scaffold.
-- After `configure`, Codex interviews you about the project direction, language, architecture, validation setup, observability, and tooling, then updates the repository into a more complete, self-sufficient workspace for future agent work.
+- After `configure`, Codex interviews you about the project direction, language, architecture, validation setup, observability, and tooling, then personalizes the repository guidance into a more complete, self-sufficient workspace for future agent work.
 
 The npm package name is `@antubattle/harness`, and the installed executable is `harness`.
 
@@ -107,6 +107,7 @@ The npm package name is `@antubattle/harness`, and the installed executable is `
 ## Repository Map
 
 - `AGENTS.md`: agent workflow and execution policy for this repository.
+- `REVIEW.md`: validation and review standard for reviewer agents.
 - `ARCHITECTURE.md`: system boundaries and implementation direction for Harness.
 - `PLANS.md`: ExecPlan authoring standard.
 - `PRODUCT_SPECS.md`: product-spec authoring standard.
