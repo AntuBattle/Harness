@@ -60,6 +60,13 @@ These principles define the default engineering standard for Harness.
 - The validation pass prioritizes correctness and regressions first, test execution second, and style or organization improvements third.
 - If the validation pass finds a structural or implementation problem, the work returns to implementation and the validation loop must run again until no material issues remain.
 
+## Release hygiene
+
+- Keep a root changelog when the repository tracks notable changes across releases.
+- Prefer a Keep a Changelog style structure and semantic versioning when the project uses versioned releases.
+- Treat version bumps and changelog edits as explicit user-controlled release actions, not automatic side effects of implementation.
+- If the user declines changelog or version updates for a task, continue the requested work without touching either.
+
 ## Review bar
 
 Changes are acceptable only when they are:

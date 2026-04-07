@@ -36,6 +36,7 @@ This repository was scaffolded by Harness for agent-ready, closed-loop developme
 ## Repository Map
 
 - \`AGENTS.md\`: operating guide for implementation agents.
+- \`CHANGELOG.md\`: notable release history and release-note structure.
 - \`REVIEW.md\`: review guide for validation and reviewer agents.
 - \`ARCHITECTURE.md\`: system boundaries and invariants.
 - \`PLANS.md\`: ExecPlan standard.
@@ -71,6 +72,14 @@ ${renderValidationSubagentPolicy()}
 - Use Conventional Commits.
 - Each commit should do one clearly scoped thing.
 - The commit message should describe that single purpose plainly.
+
+## Release And Changelog Discipline
+
+- Keep notable release history in the root \`CHANGELOG.md\`.
+- Prefer a Keep a Changelog style structure with an \`Unreleased\` section and semantic-versioned release entries when the project uses releases.
+- When the project uses versions, released feature work should usually bump the minor version, released bug fixes should usually bump the patch version, and breaking changes should bump the major version.
+- Always ask the user for approval before editing \`CHANGELOG.md\` or changing version numbers.
+- If the user declines, proceed with the requested work without touching \`CHANGELOG.md\` or version references, and do not present changelog or version edits as part of the delivered modification.
 
 ## Repository Visibility Tools
 
@@ -126,6 +135,11 @@ Use this file when you act as the validation subagent or as a reviewer.
 - Meaningful evidence is archived under a day-based folder such as \`${GENERATED_DAY_FOLDER_EXAMPLE}\`.
 - Persisted logs, traces, screenshots, and similar artifacts are not dropped directly into the root of \`features/generated/\`.
 - Review findings and acceptance state are reflected in the active ExecPlan.
+
+## Release And Change-Management Checks
+
+- If \`CHANGELOG.md\` or version numbers changed, verify that the user explicitly requested or approved those edits.
+- If the user declined changelog or version updates, do not treat their absence as a defect for the requested implementation.
 `;
 }
 
@@ -189,6 +203,7 @@ Every active ExecPlan must include and keep updated:
 - validation plan
 - validation-subagent prompt or prompt recipe that is distinct from the implementation prompt and directs the reviewer to \`REVIEW.md\`
 - how validation findings and artifacts will be recorded and resolved before acceptance, including any saved evidence under a day-based folder in \`features/generated/\`
+- if changelog or version edits are in scope, whether the user explicitly approved them
 - rollback or mitigation notes for risky changes
 
 ## Validation Subagent Requirement
@@ -290,6 +305,24 @@ A product spec is ready for implementation only when:
 
 - Keep \`features/product-specs/index.md\` current when specs are added, updated, or superseded.
 - Keep the boundary clean: product specs describe behavior, design docs explain tradeoffs, and ExecPlans describe implementation work.
+`;
+}
+
+function renderChangelog(): string {
+  return `# Changelog
+
+All notable changes to this repository should be documented in this file.
+
+## Guidance
+
+- Prefer a Keep a Changelog style structure.
+- Keep an \`Unreleased\` section for approved but not yet released notable changes.
+- When the project uses versions, follow semantic versioning for release entries.
+- Released feature work should usually produce a minor version bump, released bug fixes should usually produce a patch version bump, and breaking changes should produce a major version bump.
+- Always ask the user for approval before editing this file or changing version numbers.
+- If the user declines, continue the requested work without touching this file or version references, and do not present changelog or version edits as part of the delivered change.
+
+## [Unreleased]
 `;
 }
 
@@ -408,6 +441,10 @@ export function buildScaffoldFiles(
     {
       path: "AGENTS.md",
       contents: renderAgentsGuide(input),
+    },
+    {
+      path: "CHANGELOG.md",
+      contents: renderChangelog(),
     },
     {
       path: "REVIEW.md",

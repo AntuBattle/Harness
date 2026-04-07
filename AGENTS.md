@@ -9,6 +9,7 @@ Build a reliable CLI that can initialize repositories with planning, validation,
 ## Repository map
 
 - `README.md`: project purpose and scope.
+- `CHANGELOG.md`: release history and changelog structure.
 - `REVIEW.md`: validation and reviewer guide.
 - `ARCHITECTURE.md`: planned component boundaries and invariants.
 - `PLANS.md`: ExecPlan requirements.
@@ -58,6 +59,14 @@ Harness is expected to support a local closed-loop flow where:
 - Use Conventional Commits.
 - Each commit should do one clearly scoped thing.
 - The commit message should describe that single purpose plainly.
+
+## Release discipline
+
+- Keep notable release history in the root `CHANGELOG.md`.
+- Prefer a Keep a Changelog structure with an `Unreleased` section and semantic-versioned release entries when the project uses releases.
+- Released feature work should usually bump the minor version, released bug fixes should usually bump the patch version, and breaking changes should bump the major version.
+- Always ask the user before editing `CHANGELOG.md` or changing version numbers.
+- If the user declines, proceed with the requested work without touching changelog or version references, and do not present those edits as part of the delivered modification.
 
 ## Current scaffold limitations
 

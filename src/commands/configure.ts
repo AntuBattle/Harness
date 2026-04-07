@@ -20,6 +20,7 @@ Options:
 const REQUIRED_CONFIGURE_FILES = [
   "AGENTS.md",
   "ARCHITECTURE.md",
+  "CHANGELOG.md",
   "PLANS.md",
   "PRODUCT_SPECS.md",
   "REVIEW.md",

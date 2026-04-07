@@ -42,6 +42,7 @@ The output of `harness init` is intentionally generic. A real repository still n
 6. Before launching Codex, Harness must validate that the required scaffold files exist.
 7. Harness must construct a deterministic seed prompt that instructs Codex to:
    - read the existing repository docs before changing them;
+   - read `CHANGELOG.md` as part of the baseline scaffold when it exists;
    - treat its role as personalizing the existing markdown guidance and minimal repository metadata, not implementing the project;
    - begin by confirming or revising the project name and collecting a project description from the user;
    - infer the language when obvious, otherwise ask the user to choose it;
@@ -50,9 +51,11 @@ The output of `harness init` is intentionally generic. A real repository still n
    - suggest browser or framework dev tools such as Chrome DevTools when the project includes a frontend;
    - ensure the repository gives future agents a way to inspect logs and other runtime signals locally;
    - preserve the generated-artifact rule that runtime logs, traces, screenshots, and similar evidence belong under day-based subdirectories inside `features/generated/`;
+   - preserve the release-history rule that changelog and version edits require explicit user approval;
    - update the repository workflow so every implemented change requires a separate validation subagent with an explicit prompt that is different from the implementation prompt;
    - require that validation prompt to direct the validation subagent to review the latest feature using the active ExecPlan when present or a contextual summary otherwise, then run tests, then identify repetition or style and organization improvements in that priority order;
    - require contributors to iterate on findings until the validation subagent reports no material issues and the implementation is genuinely complete;
+   - require contributors to continue the requested implementation without touching changelogs or version numbers when the user declines such updates;
    - avoid creating ExecPlans, feature product specs, or source-code files during configure;
    - stay helpful, kind, and professionally opinionated when the user has not made a choice;
    - leave the repository in a state where a future agent can implement and test features autonomously inside the repository without relying on hidden human context.
@@ -78,7 +81,7 @@ The output of `harness init` is intentionally generic. A real repository still n
 - Validation: reject unknown flags, reject positionals, enforce `codex` as the only provider, and validate scaffold completeness before launch.
 - Logging: terminal output should be minimal and should not compete with the interactive Codex session.
 - Security: Harness must launch only the trusted `codex` executable and must not accept arbitrary command overrides.
-- Traceability: Codex must be prompted to update the repository docs and workflow guidance so the resulting setup is self-describing, including the validation-subagent review loop and its evidence expectations.
+- Traceability: Codex must be prompted to update the repository docs and workflow guidance so the resulting setup is self-describing, including the validation-subagent review loop, release-history expectations, and evidence expectations.
 
 ## Acceptance Criteria
 
@@ -87,6 +90,7 @@ The output of `harness init` is intentionally generic. A real repository still n
 - Running `harness configure --provider claude` fails with an actionable unsupported-provider message.
 - The seed prompt is explicit enough that Codex starts by interviewing the user about project direction instead of making blind assumptions.
 - The seed prompt is explicit enough that Codex updates the configured repository to require a separate validation-subagent review pass after implementation.
+- The seed prompt is explicit enough that Codex preserves the “ask before changelog or version edits” rule.
 - The seed prompt is explicit enough that Codex stays in markdown-personalization mode and does not create ExecPlans, feature product specs, or application source files during configure.
 - Running `harness configure` outside a valid Harness scaffold fails before Codex is started.
 

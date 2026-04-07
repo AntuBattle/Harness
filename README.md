@@ -107,6 +107,7 @@ The npm package name is `@antubattle/harness`, and the installed executable is `
 ## Repository Map
 
 - `AGENTS.md`: agent workflow and execution policy for this repository.
+- `CHANGELOG.md`: root release history for notable changes.
 - `REVIEW.md`: validation and review standard for reviewer agents.
 - `ARCHITECTURE.md`: system boundaries and implementation direction for Harness.
 - `PLANS.md`: ExecPlan authoring standard.

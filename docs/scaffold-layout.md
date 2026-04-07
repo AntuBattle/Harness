@@ -10,6 +10,7 @@ Harness creates a documentation-first repository layout.
 
 - `README.md`: project overview and quick orientation.
 - `AGENTS.md`: operating rules for implementation agents working in the repository.
+- `CHANGELOG.md`: notable release history.
 - `REVIEW.md`: reviewer and validation-subagent guide.
 - `ARCHITECTURE.md`: architecture notes and invariants.
 - `PLANS.md`: ExecPlan standard.

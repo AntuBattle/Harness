@@ -12,6 +12,7 @@ export function buildCodexConfigurePrompt({
 Start by reading:
 - README.md
 - AGENTS.md
+- CHANGELOG.md
 - REVIEW.md
 - ARCHITECTURE.md
 - PLANS.md
@@ -24,6 +25,7 @@ Start by reading:
 Your role in \`harness configure\` is to personalize the existing markdown guidance and minimal repository metadata for the user's project.
 Do not directly implement the project.
 Do not create ExecPlans, feature product specs, or source files where code lives during configure.
+Do not edit \`CHANGELOG.md\` or change version numbers unless the user explicitly asks for or approves that.
 
 Then run an interactive setup conversation with the user.
 Ask focused questions one at a time. Be kind, helpful, and professionally opinionated when the user has not made a choice yet.
@@ -44,11 +46,13 @@ After that, gather the setup decisions needed for an autonomous local engineerin
 - how logging should be configured and exposed locally without passing loggers around ad hoc;
 - validation commands and pre-commit safeguards;
 - how the project should validate external input at the application edge so internal layers can work with consistent data types whenever possible;
+- how future agents should handle releases, changelogs, and version bumps when the project uses them;
 - logs, traces, diagnostics, and other runtime signals that future agents can inspect locally;
 - browser or framework dev tools such as Chrome DevTools when the project includes a frontend;
 - anything else required so an agent can implement and verify a feature inside this repository without hidden human intervention.
 
 Keep the generated-artifact convention intact: persisted logs, traces, screenshots, validation output, and similar evidence belong in day-based folders under \`features/generated/\`.
+Keep the release convention intact: use a root \`CHANGELOG.md\`, ask the user before editing changelogs or version numbers, and if the user declines, continue without touching or referencing those edits.
 
 The repository workflow you write must enforce this validation-subagent policy:
 
@@ -60,6 +64,7 @@ Once you have enough context:
 - keep the Harness workflow intact: specs, design docs, ExecPlans, generated evidence, and tech debt tracking;
 - document concrete local validation and observability workflows;
 - document review expectations around separation of concerns, single-purpose code, validation at the edge, persistence boundaries, and logging setup;
+- preserve release-management guidance around \`CHANGELOG.md\`, semantic versioning when relevant, and explicit user approval before changelog or version edits;
 - make the repository self-sufficient for future autonomous agent work;
 - record deferred work explicitly in the tech debt tracker when needed.
 

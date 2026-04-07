@@ -19,10 +19,11 @@ Harness will keep the split between deterministic scaffolding and agent-driven p
 ### `init` responsibilities
 
 - Create the baseline repository structure in the current working directory.
-- Render generic process documentation, including dedicated standards for product specs and review.
+- Render generic process documentation, including dedicated standards for product specs, review, and release history.
 - Write only minimal scaffold metadata.
 - Accept only a project name override.
 - Encode the baseline workflow for validation-at-the-edge, daily generated-artifact folders, and mandatory validation closure.
+- Encode the baseline rule that changelog and version edits require explicit user approval.
 
 ### `configure` responsibilities
 
@@ -31,6 +32,7 @@ Harness will keep the split between deterministic scaffolding and agent-driven p
 - Launch Codex interactively in the repository so it can interview the user and personalize the existing markdown guidance and metadata.
 - Require Codex to encode the independent validation-subagent loop into the configured repository workflow.
 - Keep Codex out of implementation mode during configure: no source-code creation, no ExecPlans, and no feature product-spec authoring.
+- Keep Codex from mutating changelogs or version numbers during configure unless the user explicitly asks for that.
 
 ### Provider model
 
@@ -68,5 +70,6 @@ Harness will keep the split between deterministic scaffolding and agent-driven p
 - Keep the seed prompt specific about autonomous local development expectations, including logs, browser tooling for frontend work, validation strategy, validation at the application edge, and repository self-sufficiency.
 - Keep the seed prompt explicit about the mandatory validation-subagent rule, the need for a distinct prompt, the order of review responsibilities in that validation pass, and the rule that implementation is not complete until the validation agent is satisfied.
 - Keep generated reviewer guidance separate from implementation guidance so reviewer agents have an obvious single file to follow.
+- Keep generated release guidance explicit that `CHANGELOG.md` lives at the repository root and that version/changelog edits require user approval.
 - Keep generated artifact guidance explicit that persisted logs, traces, screenshots, and similar evidence belong in day-based folders under `features/generated/`.
 - Use strongly typed command-context objects and parsed option objects across the implementation.

@@ -29,3 +29,8 @@ Use this file when acting as the validation subagent or as a reviewer for Harnes
 - Meaningful generated evidence is stored under a day-based folder such as `features/generated/YYYY-MM-DD/`.
 - Persisted logs, traces, or screenshots are not dropped directly into the root of `features/generated/`.
 - Findings and acceptance state are reflected in the active ExecPlan.
+
+## Release And Change-Management Checks
+
+- If `CHANGELOG.md` or version numbers changed, verify that the user explicitly requested or approved those edits.
+- If the user declined changelog or version updates, do not treat their absence as a defect for the requested implementation.

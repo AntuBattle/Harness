@@ -29,13 +29,14 @@ harness configure [options]
 The seed prompt asks Codex to:
 
 - read the repository docs before editing;
+- read `CHANGELOG.md` as part of the scaffold;
 - interview the user about project direction and technical choices;
 - personalize the existing markdown guidance instead of implementing source code;
 - define local validation and observability workflows;
 - keep the repository self-sufficient for future autonomous agent work;
 - enforce the validation-subagent rule for non-trivial implementation.
 
-It also explicitly tells Codex not to create ExecPlans, feature product specs, or source files during `configure`.
+It also explicitly tells Codex not to create ExecPlans, feature product specs, or source files during `configure`, and not to edit changelogs or version numbers without explicit user approval.
 
 ## Validation-Subagent Rule
 

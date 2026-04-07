@@ -46,10 +46,14 @@ Harness does not only create folders. It establishes an operating model for repo
 3. Generated workflow docs must instruct contributors to keep product specs, design docs, and ExecPlans synchronized with implementation changes.
 4. Generated repositories must preserve a clear location for validation artifacts and review evidence under `features/generated/`, with generated logs and other evidence stored in day-based subdirectories.
 5. Generated reviewer guidance must live in a dedicated `REVIEW.md` file that reviewer agents are directed to use.
-6. Generated guidance must require validation at application boundaries so internal layers can operate on consistent data types whenever possible.
-7. Generated agent guidance must require Conventional Commits and state that each commit should do one clearly scoped thing described by its commit message.
-8. After interactive configuration, the repository guidance must describe how an agent can validate features locally with enough autonomy to implement, observe, and test changes without needing hidden operator steps.
-9. The baseline workflow must remain applicable before the project has chosen a language or framework.
+6. Generated release guidance must live in a root `CHANGELOG.md` and must instruct contributors to:
+   - use a Keep a Changelog style structure with an `Unreleased` section and semantic-versioned release entries when the project uses releases;
+   - ask the user for approval before editing changelogs or version numbers;
+   - continue the requested work without touching changelogs or version numbers if the user declines.
+7. Generated guidance must require validation at application boundaries so internal layers can operate on consistent data types whenever possible.
+8. Generated agent guidance must require Conventional Commits and state that each commit should do one clearly scoped thing described by its commit message.
+9. After interactive configuration, the repository guidance must describe how an agent can validate features locally with enough autonomy to implement, observe, and test changes without needing hidden operator steps.
+10. The baseline workflow must remain applicable before the project has chosen a language or framework.
 
 ## Business Rules / Constraints
 
@@ -58,6 +62,7 @@ Harness does not only create folders. It establishes an operating model for repo
 - Generated docs must distinguish between required process structure and project-specific tooling recommendations.
 - The validation-subagent prompt must be explicit and distinct from the implementation prompt so review independence is preserved.
 - Reviewer guidance must be strong enough to catch structural design issues, not only failing tests.
+- Release guidance must be strong enough to prevent agents from mutating versions or changelogs without user approval.
 
 ## Non-Functional Requirements
 
@@ -68,6 +73,7 @@ Harness does not only create folders. It establishes an operating model for repo
 
 - Validation: generated docs must explain where validation evidence belongs, how the configured project should be exercised locally, how validation at the application edge should be approached, and how the validation-subagent prompt and findings should be captured.
 - Logging: generated guidance must remind contributors to inspect logs and operational signals when troubleshooting and to archive persisted logs or traces by execution day under `features/generated/`.
+- Change management: generated docs must explain how changelogs and version bumps are handled, and must keep those edits behind explicit user approval.
 - Security: generated workflow guidance must not encourage unsafe repository mutation or blind command execution.
 - Traceability: decisions, plans, and evidence must remain archived in predictable locations.
 
@@ -77,7 +83,7 @@ Harness does not only create folders. It establishes an operating model for repo
 - The guidance remains useful for a Python, Node, frontend, or mixed-stack repository.
 - The generated docs explicitly mention worktrees, repository-hosting context, and runtime or browser visibility where relevant.
 - The generated docs explicitly require a distinct validation-subagent prompt, describe the review order that subagent must follow, and make completion contingent on a clean validation pass.
-- The generated docs direct reviewer agents to `REVIEW.md`, explain day-based artifact folders under `features/generated/`, and require single-purpose Conventional Commits.
+- The generated docs direct reviewer agents to `REVIEW.md`, explain day-based artifact folders under `features/generated/`, require single-purpose Conventional Commits, and keep changelog/version edits behind explicit user approval.
 
 ## References
 

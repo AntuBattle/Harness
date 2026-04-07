@@ -42,3 +42,4 @@ For non-trivial work:
 4. Implement incrementally.
 5. Run a separate validation subagent with a distinct prompt that points to `REVIEW.md`.
 6. Resolve findings and rerun validation until no material issues remain.
+7. Touch `CHANGELOG.md` or version numbers only when the user explicitly asks for or approves that.

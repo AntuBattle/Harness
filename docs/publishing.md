@@ -10,7 +10,9 @@ Harness is published to npm as `@antubattle/harness` and exposes the `harness` e
 
 1. Log in to npm with an account that owns the `@antubattle` scope.
 2. Ensure the working tree is clean.
-3. Bump the version in `package.json` before each new release.
+3. Get explicit approval for the release bookkeeping if it has not already been requested.
+4. Update `CHANGELOG.md` for the release.
+5. Bump the version in `package.json` before each new release.
 
 ## Authenticate
 
@@ -74,12 +76,13 @@ npm install -g @antubattle/harness
 
 1. Ensure the working tree is clean.
 2. Confirm the npm account owns the `@antubattle` scope.
-3. Bump the package version for the release.
-4. Run the build and test commands.
-5. Run the packaging smoke test.
-6. Inspect `npm pack --dry-run`.
-7. Run `npm publish`.
-8. Verify the published metadata with `npm view @antubattle/harness`.
+3. Confirm `CHANGELOG.md` is updated for the release.
+4. Bump the package version for the release.
+5. Run the build and test commands.
+6. Run the packaging smoke test.
+7. Inspect `npm pack --dry-run`.
+8. Run `npm publish`.
+9. Verify the published metadata with `npm view @antubattle/harness`.
 
 ## GitHub-Hosted Docs
 

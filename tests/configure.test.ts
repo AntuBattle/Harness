@@ -49,6 +49,7 @@ test("configure launches codex interactively with a seed prompt", async () => {
   assert.equal(calls[0]?.options.cwd, repoDir);
   assert.equal(calls[0]?.options.stdio, "inherit");
   assert.match(calls[0]?.args[0] ?? "", /current scaffold value is "Demo"/);
+  assert.match(calls[0]?.args[0] ?? "", /CHANGELOG\.md/);
   assert.match(calls[0]?.args[0] ?? "", /REVIEW\.md/);
   assert.match(calls[0]?.args[0] ?? "", /PRODUCT_SPECS\.md/);
   assert.match(calls[0]?.args[0] ?? "", /Chrome DevTools/);
@@ -58,8 +59,14 @@ test("configure launches codex interactively with a seed prompt", async () => {
     calls[0]?.args[0] ?? "",
     /Do not create ExecPlans, feature product specs, or source files where code lives during configure\./i,
   );
+  assert.match(
+    calls[0]?.args[0] ?? "",
+    /Do not edit `CHANGELOG\.md` or change version numbers unless the user explicitly asks for or approves that\./i,
+  );
   assert.match(calls[0]?.args[0] ?? "", /application edge/i);
+  assert.match(calls[0]?.args[0] ?? "", /releases, changelogs, and version bumps/i);
   assert.match(calls[0]?.args[0] ?? "", /day-based folders under `features\/generated\/`/i);
+  assert.match(calls[0]?.args[0] ?? "", /if the user declines, continue without touching or referencing those edits/i);
   assert.match(
     calls[0]?.args[0] ?? "",
     /review correctness, regressions, and repository-guideline compliance first/i,
@@ -90,9 +97,10 @@ test("configure accepts --provider codex explicitly", async () => {
   assert.equal(calls[0]?.command, "codex");
 });
 
-test("configure requires REVIEW.md and PRODUCT_SPECS.md in the scaffold", async () => {
+test("configure requires CHANGELOG.md, REVIEW.md, and PRODUCT_SPECS.md in the scaffold", async () => {
   const tempDir = await mkdtemp(join(os.tmpdir(), "harness-configure-required-"));
   const repoDir = await scaffoldRepo(tempDir);
+  await rm(join(repoDir, "CHANGELOG.md"));
   await rm(join(repoDir, "REVIEW.md"));
   await rm(join(repoDir, "PRODUCT_SPECS.md"));
 
@@ -107,6 +115,7 @@ test("configure requires REVIEW.md and PRODUCT_SPECS.md in the scaffold", async 
 
   assert.equal(exitCode, 1);
   assert.equal(stdout.toString(), "");
+  assert.match(stderr.toString(), /CHANGELOG\.md/);
   assert.match(stderr.toString(), /REVIEW\.md/);
   assert.match(stderr.toString(), /PRODUCT_SPECS\.md/);
 });

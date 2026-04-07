@@ -13,7 +13,8 @@ Harness repositories are designed around an explicit loop:
 5. Run a separate validation subagent with a distinct prompt that points the reviewer to `REVIEW.md`.
 6. Resolve findings and rerun validation until no material issues remain.
 7. Archive evidence under a day-based folder in `features/generated/`.
-8. Review changes against explicit expectations.
+8. Update `CHANGELOG.md` and version numbers only when the user explicitly requests or approves that release bookkeeping.
+9. Review changes against explicit expectations.
 
 ## Validation Subagent Priority Order
 
@@ -30,3 +31,9 @@ The validation prompt should:
 - point to the active ExecPlan when one exists;
 - otherwise provide a contextual summary of the latest feature;
 - instruct the subagent to follow the repository guidance in `AGENTS.md` and `REVIEW.md`.
+
+## Changelog And Version Rule
+
+- Keep notable release history in the root `CHANGELOG.md`.
+- Ask the user before editing changelogs or version numbers.
+- If the user declines, continue the requested work without touching changelog or version references.
